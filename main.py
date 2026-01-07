@@ -34,3 +34,7 @@ def analyze_log(req: AnalyzeRequest):
     return {
         "analysis": response.text
     }
+    
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
