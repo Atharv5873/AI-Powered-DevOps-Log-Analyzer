@@ -1,0 +1,2 @@
+CI/CD pipelines can fail due to missing environment variables,
+authentication errors, or failed container builds.

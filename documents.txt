@@ -1,0 +1,3 @@
+CI/CD pipelines can fail due to missing environment variables, authentication errors, or failed container builds. 
+Docker build failures often occur due to missing context paths, incorrect Dockerfile locations, or permission issues. 
+CrashLoopBackOff usually indicates application crashes, OOM kills, or misconfigured liveness probes. 

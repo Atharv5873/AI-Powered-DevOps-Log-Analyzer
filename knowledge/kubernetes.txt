@@ -1,0 +1,2 @@
+CrashLoopBackOff usually indicates application crashes,
+OOM kills, or misconfigured liveness probes.

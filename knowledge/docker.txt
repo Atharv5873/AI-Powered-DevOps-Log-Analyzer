@@ -1,0 +1,2 @@
+Docker build failures often occur due to missing context paths,
+incorrect Dockerfile locations, or permission issues.

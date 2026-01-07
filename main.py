@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import os
 import google.generativeai as genai
+from rag import retrieve_context 
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-3-flash-preview")
@@ -18,8 +19,13 @@ def read_root():
     
 @app.post("/analyze")
 def analyze_log(req: AnalyzeRequest):
+    context = retrieve_context(req.content)
     prompt = f"""
     You are a senior DevOps engineer.
+    
+    INTERNAL KNOWLEDGE:
+    {context}
+    
     Analyze the following {req.category} and provide:
     - Short explanation of the issue
     - Possible root causes
@@ -32,7 +38,8 @@ def analyze_log(req: AnalyzeRequest):
     response = model.generate_content(prompt)
     
     return {
-        "analysis": response.text
+        "analysis": response.text,
+        "used_rag": bool(context)
     }
     
 @app.get("/health")
